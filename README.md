@@ -46,7 +46,7 @@ RL Differential Drive is a complete framework for experimenting with continuous 
 | Track | Scope | Method | Main checked-in outputs |
 |---|---|---|---|
 | PPO | Full navigation task | Proximal Policy Optimization | Model weights, training plots, GIFs |
-| SAC | Full navigation task | Soft Actor-Critic | Model weights, training plots |
+| SAC | Full navigation task | Soft Actor-Critic | Model weights, training plots, GIFs|
 | TD3 | Full navigation task | Twin Delayed DDPG | Model weights, training plots |
 | Visualization | Interactive simulation | Pygame renderer | Multiple demonstration GIFs |
 
@@ -352,16 +352,15 @@ All checked-in plots and metrics are stored under `plots/` and `models/` directo
 ### TD3 Training Curves
 
 <p align="center">
-  <img src="plots/td3/td3_default/training_curves.png" alt="TD3 training curves" width="80%" />
+  <img src="plots\td3\td3_td3_default\training_curves.png" alt="TD3 training curves" width="80%" />
 </p>
 
 ### GIF Gallery
 
 | Algorithm | Demonstration |
 |---|---|
-| PPO | <img src="plots/ppo/ppo_improved/gifs/ppo_improved_episode_1.gif" width="300" /> |
-| SAC | <img src="plots/sac/sac_default/gifs/sac_default_episode_1.gif" width="300" /> |
-| TD3 | <img src="plots/td3/td3_default/gifs/td3_default_episode_1.gif" width="300" /> |
+| PPO | <img src="plots\ppo\ppo.gif" width="300" /> |
+| SAC | <img src="plots\sac\sac.gif" width="300" /> |
 
 ---
 
@@ -390,25 +389,6 @@ The project includes an interactive Pygame-based visualization with multiple mod
 | `SPACE` | Next episode |
 | `R` | Reset episode |
 | `ESC` | Exit |
-
-### Running visualization
-
-```bash
-# Auto mode with default model
-python src/visualize.py
-
-# Auto mode with specific model
-python src/visualize.py --model models/ppo/ppo_improved.zip
-
-# Manual control
-python src/visualize.py --manual
-
-# Demo mode
-python src/visualize.py --demo
-
-# List available models
-python src/visualize.py --list-models
-```
 
 ---
 
@@ -501,7 +481,7 @@ Quick reproduce:
 1. Train PPO: `python src/train.py --algo ppo --config improved`
 2. Train SAC: `python src/train.py --algo sac --config default`
 3. Train TD3: `python src/train.py --algo td3 --config default`
-4. Visualize: `python src/visualize.py --model models/ppo/ppo_improved.pt`
+4. Visualize: `python src/visualize.py --model models/ppo/ppo_improved.zip`
 
 **Recommended Python:** >=3.12
 
