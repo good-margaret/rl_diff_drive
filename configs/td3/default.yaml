@@ -1,0 +1,71 @@
+# configs/td3/default.yaml
+# TD3 (Twin Delayed DDPG) configuration for differential drive robot
+
+env:
+  V_MAX: 2.5
+  DT: 0.05
+  MAX_STEPS: 800
+  GOAL_DIST: 0.30
+  GOAL_ANGLE: 0.15
+
+td3:
+  # # Core parameters
+  # learning_rate: 0.0003      # Learning rate
+  # buffer_size: 100000        # Replay buffer size
+  # learning_starts: 1000      # Steps before learning starts
+  # batch_size: 256            # Batch size for updates
+  # tau: 0.005                 # Soft update coefficient
+  # gamma: 0.99                # Discount factor
+  # train_freq: 1              # Training frequency (steps)
+  # gradient_steps: 1          # Gradient steps per update
+  # policy_delay: 2            # Policy update delay (TD3 specific)
+  
+  # # Action noise
+  # action_noise: null         # Can add custom noise (e.g., NormalActionNoise)
+  
+  # # Network architecture
+  # net_arch: [256, 256]       # Hidden layers sizes
+  
+  # # Advanced parameters
+  # use_sde: false             # Use state-dependent exploration
+  # sde_sample_freq: 4        # SDE sampling frequency
+  # normalize_advantage: true  # Normalize advantage estimates
+  learning_rate: 0.0003
+  buffer_size: 100000
+  learning_starts: 1000
+  batch_size: 256
+  tau: 0.005
+  gamma: 0.99
+  train_freq: 1
+  gradient_steps: 1
+  ent_coef: "auto"
+  net_arch: [256, 256]
+  # Target policy smoothing
+  target_policy_noise: 0.2   # Standard deviation for target policy smoothing
+  target_noise_clip: 0.5     # Clipping for target policy noise
+
+training:
+  total_timesteps: 200000    # Total training steps
+  n_envs: 4                  # Number of parallel environments
+  log_every: 20000           # Log frequency
+  eval_freq: 10000           # Evaluation frequency
+  eval_episodes: 10          # Number of evaluation episodes
+  save_freq: 50000           # Model saving frequency
+  
+  # Paths
+  model_dir: "models/td3"
+  plots_dir: "plots/td3"
+  log_dir: "logs/td3"
+  model_name: "td3_default"
+  log_name: "training_log.npz"
+  
+  # GIF recording
+  record_gifs: true          # Record GIFs after training
+  n_gif_episodes: 5          # Number of episodes to record
+  gif_fps: 30                # FPS for GIFs
+
+metadata:
+  description: "TD3 training for differential drive robot"
+  author: "Your Name"
+  version: "1.0"
+  tags: ["td3", "continuous-control", "differential-drive"]

@@ -1,0 +1,58 @@
+# configs/default.yaml
+# Стандартная конфигурация для обучения
+
+env:
+  # Физические параметры
+  L: 1.0                    # расстояние между колесами (м)
+  V_MAX: 3.0                # максимальная скорость колеса (м/с)
+  DT: 0.05                  # шаг интегрирования (с)
+  MAX_STEPS: 600            # максимальное количество шагов в эпизоде
+  
+  # Условия достижения цели
+  GOAL_DIST: 0.30           # расстояние до цели для успеха (м)
+  GOAL_ANGLE: 0.15          # угол до цели для успеха (рад)
+  FIELD: 10.0               # размер поля (м)
+  
+  # Награды
+  REWARD_DIST_COEF: 0.10        # коэффициент штрафа за расстояние
+  REWARD_ANGLE_COEF: 0.03       # коэффициент штрафа за угол
+  REWARD_BOUNDARY_PENALTY: 1.0  # штраф за выезд за поле
+  REWARD_SUCCESS_BONUS: 200.0   # бонус за успех
+
+ppo:
+  # Параметры алгоритма PPO
+  learning_rate: 0.0003
+  n_steps: 1024
+  batch_size: 256
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.005
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  net_arch: [256, 256]
+  normalize_advantage: true
+  use_sde: false
+
+training:
+  # Параметры процесса обучения
+  total_timesteps: 500000      # общее количество шагов
+  n_envs: 8                    # количество параллельных сред
+  log_every: 20000             # как часто выводить лог
+  eval_freq: 10000             # частота оценки модели
+  eval_episodes: 10            # количество эпизодов для оценки
+  save_freq: 100000            # частота сохранения модели
+  
+  # Пути
+  model_dir: "models"
+  plots_dir: "plots"
+  log_dir: "logs"
+  model_name: "ppo_diff_drive"
+  log_name: "training_log.npz"
+
+# Метаданные
+metadata:
+  description: "Стандартное обучение для дифференциального привода"
+  author: "Your Name"
+  version: "1.0"

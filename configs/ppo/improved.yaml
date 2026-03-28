@@ -1,0 +1,25 @@
+# configs/ppo/improved.yaml
+env:
+  V_MAX: 2.5
+  DT: 0.05
+  MAX_STEPS: 800
+  GOAL_DIST: 0.30
+  GOAL_ANGLE: 0.15
+
+ppo:
+  learning_rate: 0.0005
+  n_steps: 2048
+  batch_size: 512
+  n_epochs: 15
+  gamma: 0.98
+  gae_lambda: 0.92
+  clip_range: 0.25
+  ent_coef: 0.02
+  vf_coef: 0.6
+  max_grad_norm: 0.8
+  net_arch: [512, 512, 256]
+
+training:
+  total_timesteps: 1000000
+  n_envs: 8
+  model_name: "improved"

@@ -1,0 +1,48 @@
+# configs/fast.yaml
+# Быстрая конфигурация для тестирования
+
+env:
+  L: 1.0
+  V_MAX: 3.0
+  DT: 0.05
+  MAX_STEPS: 300            # меньше шагов для быстрых эпизодов
+  GOAL_DIST: 0.30
+  GOAL_ANGLE: 0.15
+  FIELD: 10.0
+  REWARD_DIST_COEF: 0.10
+  REWARD_ANGLE_COEF: 0.03
+  REWARD_BOUNDARY_PENALTY: 1.0
+  REWARD_SUCCESS_BONUS: 200.0
+
+ppo:
+  learning_rate: 0.0005     # выше скорость обучения
+  n_steps: 512              # меньше шагов для более частых обновлений
+  batch_size: 128
+  n_epochs: 8
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.01            # больше исследования
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  net_arch: [128, 128]      # меньшая сеть
+  normalize_advantage: true
+  use_sde: false
+
+training:
+  total_timesteps: 100000   # быстрое обучение
+  n_envs: 4                 # меньше сред для скорости
+  log_every: 10000
+  eval_freq: 5000
+  eval_episodes: 5
+  save_freq: 50000
+  model_dir: "models/fast"
+  plots_dir: "plots/fast"
+  log_dir: "logs/fast"
+  model_name: "ppo_diff_drive_fast"
+  log_name: "training_log.npz"
+
+metadata:
+  description: "Быстрое обучение для тестирования"
+  author: "Your Name"
+  version: "1.0"

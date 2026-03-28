@@ -1,0 +1,48 @@
+# configs/precision.yaml
+# Конфигурация для высокой точности позиционирования
+
+env:
+  L: 1.0
+  V_MAX: 2.0                # меньше скорость для точности
+  DT: 0.02                  # меньше шаг времени
+  MAX_STEPS: 1000           # больше шагов
+  GOAL_DIST: 0.15           # строже условие по расстоянию
+  GOAL_ANGLE: 0.10          # строже условие по углу
+  FIELD: 10.0
+  REWARD_DIST_COEF: 0.15    # больше штраф за расстояние
+  REWARD_ANGLE_COEF: 0.05   # больше штраф за угол
+  REWARD_BOUNDARY_PENALTY: 2.0
+  REWARD_SUCCESS_BONUS: 300.0  # больше бонус
+
+ppo:
+  learning_rate: 0.0001     # меньше скорость обучения
+  n_steps: 2048             # больше шагов для лучшей оценки
+  batch_size: 512
+  n_epochs: 12
+  gamma: 0.995              # больше дисконт
+  gae_lambda: 0.98
+  clip_range: 0.2
+  ent_coef: 0.003           # меньше энтропии
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  net_arch: [512, 512, 256] # больше сеть
+  normalize_advantage: true
+  use_sde: false
+
+training:
+  total_timesteps: 1000000  # долгое обучение
+  n_envs: 8
+  log_every: 20000
+  eval_freq: 20000
+  eval_episodes: 20
+  save_freq: 200000
+  model_dir: "models/precision"
+  plots_dir: "plots/precision"
+  log_dir: "logs/precision"
+  model_name: "ppo_diff_drive_precision"
+  log_name: "training_log.npz"
+
+metadata:
+  description: "Высокоточное позиционирование"
+  author: "Your Name"
+  version: "1.0"

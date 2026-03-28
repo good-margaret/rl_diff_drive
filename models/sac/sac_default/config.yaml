@@ -1,0 +1,52 @@
+env:
+  DT: 0.05
+  FIELD: 10.0
+  GOAL_ANGLE: 0.15
+  GOAL_DIST: 0.3
+  L: 1.0
+  MAX_STEPS: 800
+  REWARD_ALIVE_BONUS: 0.01
+  REWARD_ANGLE_COEF: 0.03
+  REWARD_BOUNDARY_PENALTY: 1.0
+  REWARD_DIST_COEF: 0.1
+  REWARD_PROGRESS_COEF: 5.0
+  REWARD_STOP_PENALTY: 0.5
+  REWARD_SUCCESS_BONUS: 200.0
+  V_MAX: 2.5
+metadata:
+  author: ''
+  created: ''
+  description: ''
+  tags: []
+  version: '1.0'
+ppo:
+  batch_size: 256
+  clip_range: 0.2
+  ent_coef: 0.005
+  gae_lambda: 0.95
+  gamma: 0.99
+  learning_rate: 0.0003
+  max_grad_norm: 0.5
+  n_epochs: 10
+  n_steps: 1024
+  net_arch:
+  - 256
+  - 256
+  normalize_advantage: true
+  use_sde: false
+  vf_coef: 0.5
+training:
+  eval_episodes: 10
+  eval_freq: 10000
+  gif_fps: 30
+  log_dir: logs/sac/sac_default
+  log_every: 20000
+  log_name: training_log.npz
+  model_dir: models/sac/sac_default
+  model_name: sac_default
+  n_envs: 4
+  n_gif_episodes: 5
+  plots_dir: plots/sac/sac_default
+  record_gifs: true
+  save_freq: 100000
+  total_timesteps: 200000

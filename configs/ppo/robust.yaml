@@ -1,0 +1,48 @@
+# configs/robust.yaml
+# Конфигурация для устойчивого обучения
+
+env:
+  L: 1.0
+  V_MAX: 2.5                # умеренная скорость
+  DT: 0.03
+  MAX_STEPS: 800
+  GOAL_DIST: 0.25
+  GOAL_ANGLE: 0.12
+  FIELD: 10.0
+  REWARD_DIST_COEF: 0.12
+  REWARD_ANGLE_COEF: 0.04
+  REWARD_BOUNDARY_PENALTY: 1.5
+  REWARD_SUCCESS_BONUS: 250.0
+
+ppo:
+  learning_rate: 0.0002
+  n_steps: 2048
+  batch_size: 256
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.96
+  clip_range: 0.2
+  ent_coef: 0.01            # больше исследования для устойчивости
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  net_arch: [256, 256, 128]
+  normalize_advantage: true
+  use_sde: false
+
+training:
+  total_timesteps: 800000
+  n_envs: 12                # больше сред для разнообразия
+  log_every: 20000
+  eval_freq: 15000
+  eval_episodes: 15
+  save_freq: 100000
+  model_dir: "models/robust"
+  plots_dir: "plots/robust"
+  log_dir: "logs/robust"
+  model_name: "ppo_diff_drive_robust"
+  log_name: "training_log.npz"
+
+metadata:
+  description: "Устойчивое обучение с хорошим исследованием"
+  author: "Your Name"
+  version: "1.0"

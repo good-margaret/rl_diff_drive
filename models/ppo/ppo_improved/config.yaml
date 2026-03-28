@@ -1,0 +1,53 @@
+env:
+  DT: 0.05
+  FIELD: 10.0
+  GOAL_ANGLE: 0.15
+  GOAL_DIST: 0.3
+  L: 1.0
+  MAX_STEPS: 800
+  REWARD_ALIVE_BONUS: 0.01
+  REWARD_ANGLE_COEF: 0.03
+  REWARD_BOUNDARY_PENALTY: 1.0
+  REWARD_DIST_COEF: 0.1
+  REWARD_PROGRESS_COEF: 5.0
+  REWARD_STOP_PENALTY: 0.5
+  REWARD_SUCCESS_BONUS: 200.0
+  V_MAX: 2.5
+metadata:
+  author: ''
+  created: ''
+  description: ''
+  tags: []
+  version: '1.0'
+ppo:
+  batch_size: 512
+  clip_range: 0.25
+  ent_coef: 0.02
+  gae_lambda: 0.92
+  gamma: 0.98
+  learning_rate: 0.0005
+  max_grad_norm: 0.8
+  n_epochs: 15
+  n_steps: 2048
+  net_arch:
+  - 512
+  - 512
+  - 256
+  normalize_advantage: true
+  use_sde: false
+  vf_coef: 0.6
+training:
+  eval_episodes: 10
+  eval_freq: 10000
+  gif_fps: 30
+  log_dir: logs/ppo/ppo_improved
+  log_every: 20000
+  log_name: training_log.npz
+  model_dir: models/ppo/ppo_improved
+  model_name: ppo_improved
+  n_envs: 8
+  n_gif_episodes: 5
+  plots_dir: plots/ppo/ppo_improved
+  record_gifs: true
+  save_freq: 100000
+  total_timesteps: 1000000
